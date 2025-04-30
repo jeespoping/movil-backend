@@ -10,6 +10,7 @@ const MovilSchema = mongoose.Schema({
     unique: true,
   },
   price: Number,
+  score: Number,
   created_at: Date,
 });
 

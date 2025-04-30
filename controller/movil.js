@@ -46,6 +46,7 @@ async function updateMovil(req, res) {
 
   try {
     const movil = await Movil.findByIdAndUpdate({ _id: id }, movilData);
+
     res.status(200).send(movil);
   } catch (error) {
     console.log(error);
