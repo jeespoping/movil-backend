@@ -1,0 +1,8 @@
+{
+  "name": "movil-backend",
+  "version": "1.0.0",
+  "description": "movil-backend",
+  "main": "index.js",
+  "author": "Jesus Lopez",
+  "license": "MIT"
+}
