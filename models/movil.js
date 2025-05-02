@@ -5,6 +5,7 @@ const MovilSchema = mongoose.Schema({
   title: String,
   miniature: String,
   description: String,
+  brand: String,
   url: {
     type: String,
     unique: true,
