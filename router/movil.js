@@ -8,6 +8,7 @@ const api = express.Router();
 
 api.post("/movil", [md_auth.asureAuth, md_upload], MovilController.createMovil);
 api.get("/movil", MovilController.getMoviles);
+api.get("/movil/search", MovilController.getMovilSearch);
 api.get("/movil/:url", MovilController.getMovil);
 api.patch(
   "/movil/:id",

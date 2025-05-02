@@ -35,6 +35,25 @@ async function getMoviles(req, res) {
   }
 }
 
+async function getMovilSearch(req, res) {
+  const { q } = req.query;
+
+  const query = {
+    $or: [
+      { title: { $regex: q, $options: "i" } },
+      { description: { $regex: q, $options: "i" } },
+    ],
+  };
+
+  try {
+    const movil = await Movil.paginate(query, {});
+    res.status(200).send(movil);
+  } catch (error) {
+    console.log(error);
+    res.status(400).send({ msg: "Error al obtener los moviles" });
+  }
+}
+
 async function updateMovil(req, res) {
   const { id } = req.params;
   const movilData = req.body;
@@ -89,4 +108,5 @@ module.exports = {
   updateMovil,
   getMovil,
   deleteMovil,
+  getMovilSearch,
 };
