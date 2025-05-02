@@ -1,14 +1,22 @@
 const Movil = require("../models/movil");
 const image = require("../utils/image");
+const cloudinary = require("../config/cloudinary");
 
 async function createMovil(req, res) {
   const movil = new Movil(req.body);
   movil.create_at = new Date();
 
-  const imagePath = image.getFilesPath(req.files.miniature);
-  movil.miniature = imagePath;
+  const result = await cloudinary.uploader
+    .upload(req.files.miniature.path, {
+      folder: "movil",
+      resource_type: "auto",
+    })
+    .catch((error) => {
+      console.log(error);
+    });
 
   try {
+    movil.miniature = result.secure_url;
     movil.save();
     res.status(200).send(movil);
   } catch (error) {
